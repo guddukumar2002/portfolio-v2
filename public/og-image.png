@@ -1,0 +1,41 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#030308"/>
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(99,102,241,0.06)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#818cf8"/>
+      <stop offset="100%" style="stop-color:#c084fc"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="0%" r="60%">
+      <stop offset="0%" style="stop-color:rgba(99,102,241,0.3)"/>
+      <stop offset="100%" style="stop-color:rgba(0,0,0,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <!-- Logo box -->
+  <rect x="80" y="60" width="56" height="56" rx="16" fill="url(#textGrad)"/>
+  <text x="108" y="98" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="white" text-anchor="middle">GK</text>
+  <!-- Name -->
+  <text x="80" y="320" font-family="Arial, sans-serif" font-size="72" font-weight="900" fill="url(#textGrad)" letter-spacing="-2">Guddu Kumar</text>
+  <!-- Role -->
+  <text x="80" y="390" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="#94a3b8">Full Stack Developer</text>
+  <!-- Tags -->
+  <rect x="80" y="430" width="130" height="36" rx="8" fill="rgba(99,102,241,0.15)" stroke="rgba(99,102,241,0.3)" stroke-width="1"/>
+  <text x="145" y="453" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#a5b4fc" text-anchor="middle">React</text>
+  <rect x="224" y="430" width="150" height="36" rx="8" fill="rgba(99,102,241,0.15)" stroke="rgba(99,102,241,0.3)" stroke-width="1"/>
+  <text x="299" y="453" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#a5b4fc" text-anchor="middle">Next.js</text>
+  <rect x="388" y="430" width="150" height="36" rx="8" fill="rgba(99,102,241,0.15)" stroke="rgba(99,102,241,0.3)" stroke-width="1"/>
+  <text x="463" y="453" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#a5b4fc" text-anchor="middle">Node.js</text>
+  <rect x="552" y="430" width="160" height="36" rx="8" fill="rgba(99,102,241,0.15)" stroke="rgba(99,102,241,0.3)" stroke-width="1"/>
+  <text x="632" y="453" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#a5b4fc" text-anchor="middle">MongoDB</text>
+  <!-- URL -->
+  <text x="80" y="560" font-family="Arial, sans-serif" font-size="18" fill="#334155">guddu-kumar.vercel.app</text>
+  <!-- Right side dot -->
+  <circle cx="1050" cy="315" r="180" fill="rgba(99,102,241,0.06)"/>
+  <circle cx="1050" cy="315" r="120" fill="rgba(99,102,241,0.08)"/>
+  <text x="1050" y="340" font-family="Arial, sans-serif" font-size="80" font-weight="900" fill="url(#textGrad)" text-anchor="middle">GK</text>
+</svg>
