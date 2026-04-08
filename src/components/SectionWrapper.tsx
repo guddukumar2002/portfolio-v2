@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface Props {
   id?: string;
@@ -13,16 +12,15 @@ interface Props {
 
 export default function SectionWrapper({ id, children, title, subtitle, align = "center" }: Props) {
   const { ref, inView } = useScrollReveal();
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <section id={id} style={{ position: "relative", padding: isMobile ? "64px 0" : "96px 0", zIndex: 1 }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: isMobile ? "0 20px" : "0 32px" }}>
+    <section id={id} className="section-pad" style={{ position: "relative", zIndex: 1 }}>
+      <div className="section-inner">
         {(title || subtitle) && (
           <motion.div
             ref={ref}
             initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
-            style={{ marginBottom: isMobile ? 40 : 64, textAlign: align === "center" ? "center" : "left" }}
+            style={{ marginBottom: 48, textAlign: align === "center" ? "center" : "left" }}
           >
             {subtitle && (
               <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
@@ -32,8 +30,18 @@ export default function SectionWrapper({ id, children, title, subtitle, align = 
               </div>
             )}
             {title && (
-              <h2 style={{ fontSize: isMobile ? "clamp(24px, 7vw, 32px)" : "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#ffffff", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
-                {title}
+              <h2 style={{ fontSize: "clamp(24px, 4vw, 42px)", fontWeight: 800, color: "#ffffff", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+                {title.split(" ").map((word, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+                    style={{ display: "inline-block", marginRight: "0.25em" }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
               </h2>
             )}
           </motion.div>

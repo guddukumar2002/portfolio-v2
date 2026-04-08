@@ -14,73 +14,37 @@ export default function Education() {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(min(320px, 100%), 1fr))",
-          gap: 20,
-        }}
+        className="edu-grid"
       >
         {/* Education card */}
         <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 24 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-          }}
+          variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
           style={{
-            padding: "28px",
-            borderRadius: 20,
+            padding: "28px", borderRadius: 20,
             border: "1px solid rgba(59,130,246,0.2)",
             background: "rgba(59,130,246,0.04)",
             backdropFilter: "blur(8px)",
             boxShadow: "0 0 40px rgba(59,130,246,0.06)",
-            position: "relative",
-            overflow: "hidden",
+            position: "relative", overflow: "hidden",
           }}
         >
           <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "60%", height: 1, background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent)" }} />
 
           <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
-            <div
-              style={{
-                width: 48,
-                height: 48,
-                borderRadius: 14,
-                background: "rgba(59,130,246,0.12)",
-                border: "1px solid rgba(59,130,246,0.25)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 22,
-                flexShrink: 0,
-              }}
-            >
+            <div style={{ width: 48, height: 48, borderRadius: 14, background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>
               🎓
             </div>
-            <div>
-              <span
-                style={{
-                  display: "inline-block",
-                  fontSize: 10,
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  padding: "3px 8px",
-                  borderRadius: 6,
-                  background: "rgba(59,130,246,0.12)",
-                  color: "#60a5fa",
-                  border: "1px solid rgba(59,130,246,0.2)",
-                  marginBottom: 10,
-                }}
-              >
+            <div style={{ flex: 1 }}>
+              <span style={{ display: "inline-block", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", padding: "3px 8px", borderRadius: 6, background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.2)", marginBottom: 10 }}>
                 Education
               </span>
               <h3 style={{ color: "#fff", fontWeight: 700, fontSize: 16, lineHeight: 1.3, marginBottom: 6 }}>
                 {education.degree}
               </h3>
-              <p style={{ color: "#60a5fa", fontSize: 13, fontWeight: 600, marginBottom: 14 }}>
+              <p style={{ color: "#60a5fa", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
                 {education.institution}
               </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 16px" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 16px", marginBottom: 16 }}>
                 {[
                   { icon: "📍", text: education.location },
                   { icon: "📅", text: education.duration },
@@ -88,6 +52,16 @@ export default function Education() {
                   <span key={item.text} style={{ color: "#475569", fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
                     {item.icon} {item.text}
                   </span>
+                ))}
+              </div>
+
+              {/* Highlights */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                {education.highlights.map((h, i) => (
+                  <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                    <span style={{ color: "#60a5fa", fontSize: 12, marginTop: 1, flexShrink: 0 }}>▸</span>
+                    <span style={{ color: "#64748b", fontSize: 12, lineHeight: 1.5 }}>{h}</span>
+                  </div>
                 ))}
               </div>
             </div>
@@ -98,56 +72,24 @@ export default function Education() {
         {certificates.map((cert, i) => (
           <motion.div
             key={i}
-            variants={{
-              hidden: { opacity: 0, y: 24 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: (i + 1) * 0.1 } },
-            }}
+            variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: (i + 1) * 0.1 } } }}
             style={{
-              padding: "28px",
-              borderRadius: 20,
+              padding: "28px", borderRadius: 20,
               border: "1px solid rgba(139,92,246,0.2)",
               background: "rgba(139,92,246,0.04)",
               backdropFilter: "blur(8px)",
               boxShadow: "0 0 40px rgba(139,92,246,0.06)",
-              position: "relative",
-              overflow: "hidden",
+              position: "relative", overflow: "hidden",
             }}
           >
             <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "60%", height: 1, background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.5), transparent)" }} />
 
             <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
-              <div
-                style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: 14,
-                  background: "rgba(139,92,246,0.12)",
-                  border: "1px solid rgba(139,92,246,0.25)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 22,
-                  flexShrink: 0,
-                }}
-              >
+              <div style={{ width: 48, height: 48, borderRadius: 14, background: "rgba(139,92,246,0.12)", border: "1px solid rgba(139,92,246,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>
                 🏆
               </div>
               <div>
-                <span
-                  style={{
-                    display: "inline-block",
-                    fontSize: 10,
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    padding: "3px 8px",
-                    borderRadius: 6,
-                    background: "rgba(139,92,246,0.12)",
-                    color: "#a78bfa",
-                    border: "1px solid rgba(139,92,246,0.2)",
-                    marginBottom: 10,
-                  }}
-                >
+                <span style={{ display: "inline-block", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", padding: "3px 8px", borderRadius: 6, background: "rgba(139,92,246,0.12)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.2)", marginBottom: 10 }}>
                   Certificate
                 </span>
                 <h4 style={{ color: "#fff", fontWeight: 700, fontSize: 15, lineHeight: 1.3, marginBottom: 4 }}>

@@ -1,8 +1,5 @@
-"use client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import PageTransition from "@/components/PageTransition";
-import SectionDivider from "@/components/SectionDivider";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import TechMarquee from "@/components/TechMarquee";
@@ -23,30 +20,20 @@ export default function Home() {
       <ScrollProgress />
       <BackToTop />
       <Navbar />
-      <PageTransition>
-        <main>
-          <Hero />
-          <Stats />
-          <TechMarquee />
-          <SectionDivider />
-          <About />
-          <SectionDivider />
-          <Experience />
-          <SectionDivider />
-          <Skills />
-          <SectionDivider />
-          <Projects />
-          <SectionDivider />
-          <Education />
-          <SectionDivider />
-          <WhyHireMe />
-          <SectionDivider />
-          <Testimonials />
-          <SectionDivider />
-          <Contact />
-        </main>
-        <Footer />
-      </PageTransition>
+      <main>
+        <Hero />
+        <Stats />
+        <TechMarquee />
+        <About />
+        <Experience />
+        <Skills />
+        <Projects />
+        <Education />
+        <WhyHireMe />
+        <Testimonials />
+        <Contact />
+      </main>
+      <Footer />
     </>
   );
 }

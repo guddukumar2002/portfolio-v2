@@ -9,17 +9,34 @@ const inter = Inter({
   display: "swap",
 });
 
+const BASE_URL = "https://guddu-kumar.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: "Guddu Kumar — Full Stack Developer",
   description:
     "Full Stack Developer with 4+ internships & jobs. Specialized in React, Next.js, Node.js & MongoDB. Building fast, scalable, production-ready web applications. Based in Ghaziabad, India.",
-  keywords: ["Guddu Kumar", "Full Stack Developer", "React", "Next.js", "Node.js", "MERN Stack", "Portfolio", "Ghaziabad"],
-  authors: [{ name: "Guddu Kumar" }],
-  metadataBase: new URL("https://guddu-kumar.vercel.app"),
+  keywords: [
+    "Guddu Kumar",
+    "Full Stack Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Node.js",
+    "MERN Stack",
+    "Portfolio",
+    "Ghaziabad",
+    "India",
+    "Web Developer",
+    "Frontend Developer",
+    "Backend Developer",
+  ],
+  authors: [{ name: "Guddu Kumar", url: BASE_URL }],
+  creator: "Guddu Kumar",
   openGraph: {
     title: "Guddu Kumar — Full Stack Developer",
-    description: "Full Stack Developer building modern web applications with React, Next.js & Node.js.",
-    url: "https://guddu-kumar.vercel.app",
+    description:
+      "Full Stack Developer building modern web applications with React, Next.js & Node.js. 4+ companies, 5+ production projects.",
+    url: BASE_URL,
     siteName: "Guddu Kumar Portfolio",
     type: "website",
     images: [
@@ -34,15 +51,26 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Guddu Kumar — Full Stack Developer",
-    description: "Full Stack Developer building modern web applications with React, Next.js & Node.js.",
+    description:
+      "Full Stack Developer building modern web applications with React, Next.js & Node.js.",
     images: ["/og-image.png"],
+  },
+  alternates: {
+    canonical: BASE_URL,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
-      <body className="antialiased"><SmoothScroll>{children}</SmoothScroll></body>
+      <body className="antialiased">
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }
