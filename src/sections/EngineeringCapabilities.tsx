@@ -23,7 +23,7 @@ export default function EngineeringCapabilities() {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-        style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}
+        style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(280px, 100%), 1fr))", gap: 24 }}
       >
         {engineeringCapabilities.map((cap, i) => (
           <motion.div

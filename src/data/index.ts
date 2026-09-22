@@ -20,6 +20,7 @@ export interface Project {
   live: string;
   screenshot: string;
   featured: boolean;
+  category: "Full Stack" | "AI & Automation" | "Backend & APIs" | "Educational & Systems";
   metrics: string[];
   keyFeatures: string[];
   architectureHighlights: string[];
@@ -48,6 +49,7 @@ export const projects: Project[] = [
     live: "https://aivoa-complaint-system-nu.vercel.app",
     screenshot: "/assets/screenshots/aivoa.png",
     featured: true,
+    category: "AI & Automation",
     metrics: ["AI Copilot RCA", "LangGraph Workflow", "Enterprise QMS"],
     keyFeatures: [
       "Automated Root Cause Analysis (RCA) Engine",
@@ -84,6 +86,7 @@ export const projects: Project[] = [
     live: "https://seglko.org/",
     screenshot: "/assets/screenshots/seglko.png",
     featured: true,
+    category: "Full Stack",
     metrics: ["Live seglko.org", "Multi-Microsite Engine", "Web Developer @ SEG"],
     keyFeatures: [
       "Multi-Microsite Path Rewrites (/ssitm, /sitm routing)",
@@ -120,6 +123,7 @@ export const projects: Project[] = [
     live: "https://medical-gallery-xi.vercel.app",
     screenshot: "/assets/screenshots/medgallery.png",
     featured: true,
+    category: "Full Stack",
     metrics: ["Real Clinical Use", "Role-Based Auth", "Cloudinary Storage"],
     keyFeatures: [
       "Role-Based Access Control (Admin / Staff / Public)",
@@ -157,6 +161,7 @@ export const projects: Project[] = [
     live: "https://spl-tournament-up.vercel.app",
     screenshot: "/assets/screenshots/spl.png",
     featured: true,
+    category: "Full Stack",
     metrics: ["100+ Registrations", "Razorpay Payments", "Auto SMS & Email"],
     keyFeatures: [
       "Individual & Team Registration Workflows",
@@ -194,6 +199,7 @@ export const projects: Project[] = [
     live: "https://slooze-food-ordering.vercel.app",
     screenshot: "/assets/screenshots/slooze.svg",
     featured: false,
+    category: "Backend & APIs",
     metrics: ["GraphQL API", "RBAC + ReBAC Auth", "NestJS Architecture"],
     keyFeatures: [
       "Code-First GraphQL Schema & Apollo Client Integration",
@@ -223,6 +229,7 @@ export const projects: Project[] = [
     live: "https://customer-support-dashboard-psi.vercel.app",
     screenshot: "/assets/screenshots/support-dashboard.svg",
     featured: false,
+    category: "Full Stack",
     metrics: ["Zustand State", "Real-time Metrics", "CSV Data Export"],
     keyFeatures: [
       "Instant Ticket Filtering & Multi-Column Sorting",
@@ -252,6 +259,7 @@ export const projects: Project[] = [
     live: "https://studiox-broadcasting.vercel.app",
     screenshot: "/assets/screenshots/studiox.svg",
     featured: false,
+    category: "Educational & Systems",
     metrics: ["Strict Zod Validation", "Video Streaming", "Next.js 14"],
     keyFeatures: [
       "Video Content Categorization & Broadcast Streaming",
@@ -279,6 +287,7 @@ export const projects: Project[] = [
     live: "https://content-broadcasting.up.railway.app/",
     screenshot: "/assets/screenshots/content-broadcasting.svg",
     featured: false,
+    category: "Backend & APIs",
     metrics: ["High Concurrency", "Railway Deployed", "Live Stream Queue"],
     keyFeatures: [
       "High-Throughput Live Content Dispatch Engine",
@@ -306,6 +315,7 @@ export const projects: Project[] = [
     live: "https://github.com/guddukumar2002/inventory-order-api",
     screenshot: "/assets/screenshots/inventory-api.svg",
     featured: false,
+    category: "Backend & APIs",
     metrics: ["Atomic Transactions", "JWT Middleware", "Enterprise Microservice"],
     keyFeatures: [
       "Atomic Order & Inventory Stock Lock Operations",
@@ -333,6 +343,7 @@ export const projects: Project[] = [
     live: "https://github.com/guddukumar2002/url-shortner",
     screenshot: "/assets/screenshots/url-shortener.svg",
     featured: false,
+    category: "Backend & APIs",
     metrics: ["Multi-Tenant", "Click Analytics", "Instant Redirects"],
     keyFeatures: [
       "Fast Base62 Short Code Encoding & Alias Lookup",
@@ -360,6 +371,7 @@ export const projects: Project[] = [
     live: "https://ssitm.vercel.app/",
     screenshot: "/assets/screenshots/ssitm.png",
     featured: false,
+    category: "Educational & Systems",
     metrics: ["Live Institutional Website", "100% Responsive Layout", "Fast SSG Load Speed"],
     keyFeatures: [
       "Comprehensive Course & Curriculum Directory",
@@ -388,6 +400,7 @@ export const projects: Project[] = [
     live: "https://vignam-landing-theta.vercel.app",
     screenshot: "/assets/screenshots/vignam.svg",
     featured: false,
+    category: "Educational & Systems",
     metrics: ["EdTech Platform", "TypeScript", "Fast Load Speed"],
     keyFeatures: [
       "Interactive Course Catalog & Curriculum Explorer",
@@ -423,6 +436,7 @@ export const projects: Project[] = [
     live: "https://hubcraft-guddu.netlify.app/",
     screenshot: "/assets/screenshots/hubspot.svg",
     featured: false,
+    category: "Educational & Systems",
     metrics: ["8 Custom Modules", "HubDB Filtering", "HubSpot Theme"],
     keyFeatures: [
       "8 Editable Modules (Hero Slider, Parallax, Accordion, Tabber, Popup Cards, etc.)",
@@ -451,6 +465,7 @@ export const projects: Project[] = [
     live: "https://aanchal-task.vercel.app/",
     screenshot: "/assets/screenshots/aanchal.png",
     featured: false,
+    category: "Full Stack",
     metrics: ["Figma to Code 100%", "Saree E-Commerce UI", "Pixel-Perfect Design"],
     keyFeatures: [
       "Pixel-Perfect Conversion of Figma Saree & Ethnic Wear UI Design",

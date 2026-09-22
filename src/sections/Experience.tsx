@@ -33,7 +33,7 @@ export default function Experience() {
           <motion.div
             key={i}
             variants={{ hidden: { opacity: 0, x: -24 }, visible: { opacity: 1, x: 0, transition: { duration: 0.55 } } }}
-            style={{ position: "relative", paddingLeft: 52, paddingBottom: 36 }}
+            style={{ position: "relative", paddingLeft: "clamp(36px, 5vw, 52px)", paddingBottom: 36 }}
           >
             {/* Timeline Dot Node */}
             <div
@@ -58,6 +58,7 @@ export default function Experience() {
 
             {/* Experience Card */}
             <motion.div
+              className="modal-mobile-padding"
               whileHover={{ borderColor: exp.current ? "rgba(52,211,153,0.4)" : "rgba(99,102,241,0.35)", y: -3 }}
               transition={{ duration: 0.2 }}
               style={{
@@ -91,7 +92,7 @@ export default function Experience() {
                 </div>
 
                 {/* Duration & Location */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4 }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 4 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-muted)", fontSize: 12, fontFamily: "monospace" }}>
                     <Calendar size={13} />
                     {exp.duration}

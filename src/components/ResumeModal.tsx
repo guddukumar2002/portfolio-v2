@@ -190,7 +190,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
             <div className="resume-modal-body" style={{ flex: 1, width: "100%", height: "100%", overflow: "hidden", position: "relative" }}>
               {viewMode === "interactive" ? (
                 /* Interactive Formatted Resume View */
-                <div style={{ height: "100%", overflowY: "auto", overscrollBehavior: "contain", WebkitOverflowScrolling: "touch", padding: "28px", display: "flex", flexDirection: "column", gap: 24 }}>
+                <div className="modal-mobile-padding" style={{ height: "100%", overflowY: "auto", overscrollBehavior: "contain", WebkitOverflowScrolling: "touch", padding: "28px", display: "flex", flexDirection: "column", gap: 24 }}>
                   {/* Candidate Header */}
                   <div className="resume-header-box" style={{ padding: "24px", borderRadius: 16 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 12 }}>

@@ -25,8 +25,8 @@ export default function BackToTop() {
           onClick={() => scrollToSection("home")}
           style={{
             position: "fixed",
-            bottom: 32,
-            right: 28,
+            bottom: 84,
+            right: 24,
             zIndex: 99,
             width: 44,
             height: 44,

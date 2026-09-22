@@ -52,10 +52,10 @@ export default function About({ onOpenResume }: AboutProps) {
             </h2>
 
             {/* Currently Building Badge */}
-            <div style={{ padding: "12px 16px", borderRadius: 12, border: "1px solid rgba(99, 102, 241, 0.25)", background: "rgba(99, 102, 241, 0.06)", display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#6366f1", boxShadow: "0 0 10px #6366f1" }} />
+            <div style={{ padding: "12px 16px", borderRadius: 12, border: "1px solid rgba(99, 102, 241, 0.25)", background: "rgba(99, 102, 241, 0.06)", display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 20, maxWidth: "100%", flexWrap: "wrap" }}>
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#6366f1", boxShadow: "0 0 10px #6366f1", flexShrink: 0 }} />
               <span style={{ color: "#a5b4fc", fontSize: 13, fontWeight: 600 }}>
-                Currently building → <strong style={{ color: "#fff" }}>scalable web applications + AI-powered experiences</strong>
+                Currently building → <strong style={{ color: "var(--text-main)" }}>scalable web applications + AI-powered experiences</strong>
               </span>
             </div>
 
@@ -105,7 +105,7 @@ export default function About({ onOpenResume }: AboutProps) {
             style={{ display: "flex", flexDirection: "column", gap: 16 }}
           >
             {/* Facts Grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+            <div className="facts-grid-responsive" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(180px, 100%), 1fr))", gap: 12 }}>
               {facts.map((fact, i) => (
                 <motion.div
                   key={i}

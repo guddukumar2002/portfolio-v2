@@ -125,13 +125,43 @@ html.light [style*="background: rgba(8,8,20,0.85)"] {
 }
 
 html.light header {
-  background: rgba(255, 255, 255, 0.92) !important;
-  border-bottom-color: rgba(226, 232, 240, 0.8) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+.nav-hamburger-icon {
+  color: var(--text-main);
+}
+
+html.light .nav-hamburger {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light .nav-hamburger-icon {
+  color: #0f172a !important;
 }
 
 html.light .nav-mobile-menu {
   background: #ffffff !important;
   border-bottom-color: #e2e8f0 !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light .nav-mobile-link {
+  color: #334155 !important;
+}
+
+html.light .nav-mobile-link.active {
+  background: rgba(99, 102, 241, 0.12) !important;
+  color: #4f46e5 !important;
+}
+
+html.light .nav-mobile-search-btn {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
 }
 
 /* ─── CODE EDITOR DECK & TERMINAL CONTRAST ─── */
@@ -496,9 +526,9 @@ section + section {
   .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
   .edu-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-grid { grid-template-columns: repeat(4, 1fr); }
-  .nav-links-desktop { display: none; }
-  .nav-resume-btn { display: none; }
-  .nav-hamburger { display: flex; }
+  .nav-links-desktop { display: none !important; }
+  .nav-resume-btn { display: none !important; }
+  .nav-hamburger { display: flex !important; }
   .nav-inner { padding: 0 20px; }
 }
 
@@ -506,6 +536,7 @@ section + section {
 @media (max-width: 768px) {
   .section-pad { padding: 56px 0; }
   .section-inner { padding: 0 20px; }
+  .nav-cmd-btn { display: none !important; }
 
   .hero-inner {
     padding: 90px 20px 48px;
@@ -527,6 +558,10 @@ section + section {
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .testimonials-grid { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: 1fr; gap: 24px; }
+  
+  .modal-two-col-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* ─── MOBILE 480px ───────────────────────────────────────────── */
@@ -544,6 +579,13 @@ section + section {
   .stats-item { padding: 24px 12px; }
 
   .contact-grid { gap: 24px; }
+  
+  .facts-grid-responsive {
+    grid-template-columns: 1fr !important;
+  }
+  .modal-mobile-padding {
+    padding: 16px !important;
+  }
 }
 
 /* ─── SMALL MOBILE 360px ─────────────────────────────────────── */

@@ -441,7 +441,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          style={{ flex: "1 1 480px", maxWidth: 540, minWidth: 320 }}
+          style={{ flex: "1 1 480px", maxWidth: 540, minWidth: 0, width: "100%" }}
         >
           <div
             className="code-editor-deck"
@@ -451,19 +451,20 @@ export default function Hero({ onOpenResume }: HeroProps) {
               background: "#080814",
               boxShadow: "0 24px 60px rgba(0,0,0,0.8), 0 0 40px rgba(99,102,241,0.2)",
               overflow: "hidden",
+              width: "100%",
             }}
           >
             {/* Editor Window Header Bar */}
-            <div style={{ padding: "12px 16px", background: "rgba(255,255,255,0.03)", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div style={{ padding: "12px 16px", background: "rgba(255,255,255,0.03)", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
               {/* Window controls & Tabs */}
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <div style={{ display: "flex", gap: 6 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0, overflowX: "auto" }}>
+                <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
                   <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ef4444" }} />
                   <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#f59e0b" }} />
                   <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#10b981" }} />
                 </div>
                 {/* Tabs */}
-                <div style={{ display: "flex", gap: 4 }}>
+                <div style={{ display: "flex", gap: 4, overflowX: "auto", scrollbarWidth: "none" }}>
                   {(
                     [
                       { id: "stack", label: "stack.config.ts", icon: <Code size={12} /> },
@@ -487,6 +488,8 @@ export default function Hero({ onOpenResume }: HeroProps) {
                         fontWeight: 600,
                         cursor: "pointer",
                         fontFamily: "monospace",
+                        whiteSpace: "nowrap",
+                        flexShrink: 0,
                       }}
                     >
                       {tab.icon}
@@ -497,7 +500,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
               </div>
 
               {/* Action Buttons: Run Code & Copy */}
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
                 <button
                   onClick={handleRun}
                   title="Run Code Snippet"
@@ -529,7 +532,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
             </div>
 
             {/* Editor Code Snippet Body */}
-            <div style={{ padding: "20px", background: "#04040a", overflowX: "auto", fontFamily: "monospace", fontSize: 12, lineHeight: 1.7, color: "#cbd5e1" }}>
+            <div style={{ padding: "16px", background: "#04040a", overflowX: "auto", fontFamily: "monospace", fontSize: 12, lineHeight: 1.7, color: "#cbd5e1" }}>
               <pre style={{ margin: 0, whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
                 {codeSnippets[activeTab]}
               </pre>

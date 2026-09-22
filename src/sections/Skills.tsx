@@ -144,7 +144,7 @@ export default function Skills() {
               </div>
 
               {/* Badges Grid */}
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 12 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(200px, 100%), 1fr))", gap: 12 }}>
                 {catSkills.map((skill) => {
                   const meta = iconMap[skill.name];
                   const filled = levelDots[skill.level] ?? 1;

@@ -136,6 +136,7 @@ export default function Contact() {
         {/* RIGHT COLUMN: Contact Form */}
         <form
           onSubmit={handleSubmit}
+          className="modal-mobile-padding"
           style={{
             padding: "32px",
             borderRadius: 20,

@@ -111,8 +111,8 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }: NavbarPro
           <button
             onClick={onOpenCommandPalette}
             title="Open Command Palette (Cmd+K)"
+            className="nav-cmd-btn"
             style={{
-              display: "flex",
               alignItems: "center",
               gap: 6,
               padding: "7px 12px",
@@ -138,7 +138,6 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }: NavbarPro
             onClick={onOpenResume}
             className="nav-resume-btn"
             style={{
-              display: "inline-flex",
               alignItems: "center",
               gap: 6,
               padding: "8px 16px",
@@ -158,7 +157,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }: NavbarPro
 
           {/* Hamburger */}
           <button onClick={() => setOpen(!open)} className="nav-hamburger" aria-label="Toggle Menu">
-            {open ? <X size={20} style={{ color: "#fff" }} /> : <Menu size={20} style={{ color: "#fff" }} />}
+            {open ? <X size={20} className="nav-hamburger-icon" /> : <Menu size={20} className="nav-hamburger-icon" />}
           </button>
         </div>
       </nav>
@@ -174,31 +173,36 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }: NavbarPro
             className="nav-mobile-menu"
           >
             <ul style={{ listStyle: "none", margin: 0, padding: "12px 20px 20px", display: "flex", flexDirection: "column", gap: 6 }}>
-              {navLinks.map((link) => (
-                <li key={link.label}>
-                  <button
-                    onClick={() => scrollTo(link.href)}
-                    style={{
-                      width: "100%",
-                      textAlign: "left",
-                      padding: "12px 16px",
-                      borderRadius: 10,
-                      background: active === link.href.replace("#", "") ? "rgba(99,102,241,0.12)" : "transparent",
-                      border: "none",
-                      color: active === link.href.replace("#", "") ? "#a5b4fc" : "#94a3b8",
-                      fontSize: 14,
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      fontFamily: "inherit",
-                    }}
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
+              {navLinks.map((link) => {
+                const linkId = link.href.replace("#", "");
+                const isActive = active === linkId;
+                return (
+                  <li key={link.label}>
+                    <button
+                      onClick={() => scrollTo(link.href)}
+                      className={`nav-mobile-link ${isActive ? "active" : ""}`}
+                      style={{
+                        width: "100%",
+                        textAlign: "left",
+                        padding: "12px 16px",
+                        borderRadius: 10,
+                        background: isActive ? "rgba(99,102,241,0.12)" : "transparent",
+                        border: "none",
+                        fontSize: 14,
+                        fontWeight: 600,
+                        cursor: "pointer",
+                        fontFamily: "inherit",
+                      }}
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                );
+              })}
               <li style={{ marginTop: 8, display: "flex", gap: 10 }}>
                 <button
                   onClick={() => { setOpen(false); onOpenCommandPalette(); }}
+                  className="nav-mobile-search-btn"
                   style={{
                     flex: 1,
                     display: "flex",
@@ -207,9 +211,6 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }: NavbarPro
                     gap: 6,
                     padding: "12px",
                     borderRadius: 10,
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    background: "rgba(255,255,255,0.05)",
-                    color: "#cbd5e1",
                     fontSize: 13,
                     fontWeight: 600,
                     cursor: "pointer",

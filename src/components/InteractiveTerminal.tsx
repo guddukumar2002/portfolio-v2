@@ -165,9 +165,9 @@ export default function InteractiveTerminal() {
       exit={{ opacity: 0, y: 40 }}
       style={{
         position: "fixed",
-        bottom: 24,
-        right: 24,
-        width: "min(480px, 92vw)",
+        bottom: "clamp(16px, 3vw, 24px)",
+        right: "clamp(12px, 3vw, 24px)",
+        width: "min(480px, calc(100vw - 24px))",
         height: isMinimized ? 44 : 320,
         borderRadius: 16,
         border: "1px solid rgba(99, 102, 241, 0.35)",

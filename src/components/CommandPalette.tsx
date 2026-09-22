@@ -52,7 +52,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }: Comman
   return (
     <AnimatePresence>
       {isOpen && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "flex-start", justifyContent: "center", paddingTop: "12vh", paddingLeft: 16, paddingRight: 16 }}>
+        <div style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "flex-start", justifyContent: "center", paddingTop: "clamp(24px, 6vh, 80px)", paddingLeft: 16, paddingRight: 16 }}>
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}

@@ -86,7 +86,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           {/* Scrollable Body */}
-          <div style={{ flex: 1, overflowY: "auto", padding: "24px", display: "flex", flexDirection: "column", gap: 24 }}>
+          <div className="modal-mobile-padding" style={{ flex: 1, overflowY: "auto", padding: "24px", display: "flex", flexDirection: "column", gap: 24 }}>
             {/* Image Preview */}
             <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)", height: 260, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
               {/* Fallback pattern */}
@@ -118,7 +118,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
 
             {/* Problem & Solution Grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div className="modal-two-col-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 16 }}>
               <div style={{ padding: "16px", borderRadius: 14, background: "rgba(239, 68, 68, 0.04)", border: "1px solid rgba(239, 68, 68, 0.15)" }}>
                 <h4 style={{ color: "#f87171", fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>The Problem</h4>
                 <p style={{ color: "#cbd5e1", fontSize: 13, lineHeight: 1.6 }}>{project.problem}</p>
@@ -135,7 +135,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <h4 style={{ color: "#fff", fontSize: 14, fontWeight: 700, marginBottom: 12, display: "flex", alignItems: "center", gap: 8 }}>
                 <CheckCircle2 size={16} style={{ color: "#6366f1" }} /> Key Features
               </h4>
-              <ul style={{ listStyle: "none", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+              <ul className="modal-two-col-grid" style={{ listStyle: "none", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 10 }}>
                 {project.keyFeatures.map((feat) => (
                   <li key={feat} style={{ display: "flex", alignItems: "flex-start", gap: 8, color: "#94a3b8", fontSize: 13, lineHeight: 1.5 }}>
                     <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#6366f1", marginTop: 6, flexShrink: 0 }} />
@@ -177,7 +177,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           {/* Footer CTAs */}
-          <div style={{ padding: "16px 24px", borderTop: "1px solid rgba(255, 255, 255, 0.08)", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 12, background: "rgba(255,255,255,0.02)" }}>
+          <div style={{ padding: "16px 24px", borderTop: "1px solid rgba(255, 255, 255, 0.08)", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "flex-end", gap: 12, background: "rgba(255,255,255,0.02)" }}>
             <a
               href={project.github}
               target="_blank"
