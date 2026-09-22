@@ -9,16 +9,16 @@ import { FaJava } from "react-icons/fa";
 
 const techs = [
   { name: "React",      color: "#61DAFB", icon: <SiReact /> },
-  { name: "Next.js",    color: "#ffffff", icon: <SiNextdotjs /> },
+  { name: "Next.js",    color: "var(--text-main)", icon: <SiNextdotjs /> },
   { name: "TypeScript", color: "#3178C6", icon: <SiTypescript /> },
   { name: "Node.js",    color: "#339933", icon: <SiNodedotjs /> },
   { name: "MongoDB",    color: "#47A248", icon: <SiMongodb /> },
-  { name: "Express",    color: "#ffffff", icon: <SiExpress /> },
+  { name: "Express",    color: "var(--text-main)", icon: <SiExpress /> },
   { name: "Tailwind",   color: "#06B6D4", icon: <SiTailwindcss /> },
   { name: "Git",        color: "#F05032", icon: <SiGit /> },
   { name: "GCP",        color: "#4285F4", icon: <SiGooglecloud /> },
   { name: "Prisma",     color: "#a78bfa", icon: <SiPrisma /> },
-  { name: "Vercel",     color: "#ffffff", icon: <SiVercel /> },
+  { name: "Vercel",     color: "var(--text-main)", icon: <SiVercel /> },
   { name: "Python",     color: "#3776AB", icon: <SiPython /> },
   { name: "Java",       color: "#ED8B00", icon: <FaJava /> },
   { name: "JavaScript", color: "#F7DF1E", icon: <SiJavascript /> },
@@ -41,13 +41,13 @@ const Row = ({ reverse = false }: { reverse?: boolean }) => {
             style={{
               display: "flex", alignItems: "center", gap: 8,
               padding: "10px 18px", borderRadius: 12,
-              border: "1px solid rgba(255,255,255,0.07)",
-              background: "rgba(255,255,255,0.03)",
+              border: "1px solid var(--card-border)",
+              background: "var(--card-bg)",
               whiteSpace: "nowrap", flexShrink: 0,
             }}
           >
             <span style={{ fontSize: 18, color: tech.color, display: "flex", alignItems: "center" }}>{tech.icon}</span>
-            <span style={{ color: "#94a3b8", fontSize: 13, fontWeight: 600 }}>{tech.name}</span>
+            <span style={{ color: "var(--text-muted)", fontSize: 13, fontWeight: 600 }}>{tech.name}</span>
           </div>
         ))}
       </motion.div>

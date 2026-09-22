@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a14"/>
+      <stop offset="50%" stop-color="#05141e"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="primary" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="graphql" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e10098"/>
+      <stop offset="100%" stop-color="#b00078"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Top Window Header -->
+  <rect x="30" y="25" width="740" height="40" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
+  <circle cx="55" cy="45" r="5" fill="#ef4444"/>
+  <circle cx="70" cy="45" r="5" fill="#f59e0b"/>
+  <circle cx="85" cy="45" r="5" fill="#10b981"/>
+  <text x="110" y="49" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Slooze — NestJS GraphQL Enterprise Food Ordering System</text>
+  
+  <rect x="610" y="34" width="140" height="22" rx="6" fill="url(#graphql)"/>
+  <text x="625" y="49" fill="#ffffff" font-family="system-ui, sans-serif" font-size="10" font-weight="800">GraphQL + ReBAC Auth</text>
+
+  <!-- Content Container -->
+  <rect x="30" y="75" width="740" height="350" rx="14" fill="rgba(15,23,42,0.7)" stroke="rgba(16,185,129,0.3)"/>
+
+  <!-- Food Items Showcase Grid -->
+  <rect x="55" y="95" width="410" height="310" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)"/>
+  <text x="70" y="120" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="800">Popular Restaurant Menus</text>
+
+  <!-- Item Card 1 -->
+  <rect x="70" y="135" width="180" height="120" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="80" y="145" width="160" height="50" rx="6" fill="rgba(16,185,129,0.2)"/>
+  <text x="130" y="175" fill="#34d399" font-family="system-ui, sans-serif" font-size="16">🍔</text>
+  <text x="80" y="212" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Artisanal Gourmet Burger</text>
+  <text x="80" y="228" fill="#10b981" font-family="system-ui, sans-serif" font-size="11" font-weight="800">$14.99</text>
+  <rect x="195" y="215" width="45" height="18" rx="4" fill="url(#primary)"/>
+  <text x="207" y="227" fill="#fff" font-family="system-ui" font-size="10" font-weight="800">+ Add</text>
+
+  <!-- Item Card 2 -->
+  <rect x="265" y="135" width="180" height="120" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="275" y="145" width="160" height="50" rx="6" fill="rgba(225,0,152,0.2)"/>
+  <text x="325" y="175" fill="#f472b6" font-family="system-ui, sans-serif" font-size="16">🍕</text>
+  <text x="275" y="212" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Truffle Mushroom Pizza</text>
+  <text x="275" y="228" fill="#10b981" font-family="system-ui, sans-serif" font-size="11" font-weight="800">$18.50</text>
+  <rect x="390" y="215" width="45" height="18" rx="4" fill="url(#primary)"/>
+  <text x="402" y="227" fill="#fff" font-family="system-ui" font-size="10" font-weight="800">+ Add</text>
+
+  <!-- GraphQL Playground Drawer -->
+  <rect x="480" y="95" width="275" height="310" rx="10" fill="#04040c" stroke="rgba(225,0,152,0.3)"/>
+  <text x="495" y="120" fill="#e10098" font-family="monospace" font-size="11" font-weight="700">GraphQL Code-First Schema</text>
+
+  <text x="495" y="145" fill="#60a5fa" font-family="monospace" font-size="10">query GetFoodCatalog {</text>
+  <text x="510" y="162" fill="#cbd5e1" font-family="monospace" font-size="9">restaurants(country: "IN") {</text>
+  <text x="525" y="178" fill="#a5b4fc" font-family="monospace" font-size="9">id, name, rebacRole</text>
+  <text x="525" y="194" fill="#34d399" font-family="monospace" font-size="9">menuItems { title, price }</text>
+  <text x="510" y="210" fill="#cbd5e1" font-family="monospace" font-size="9">}</text>
+  <text x="495" y="226" fill="#60a5fa" font-family="monospace" font-size="10">}</text>
+
+  <rect x="495" y="245" width="245" height="145" rx="6" fill="#0b0f19" stroke="rgba(255,255,255,0.08)"/>
+  <text x="505" y="265" fill="#34d399" font-family="monospace" font-size="9">✓ NestJS Resolvers Active</text>
+  <text x="505" y="280" fill="#94a3b8" font-family="monospace" font-size="9">✓ ReBAC Country Filter Guard</text>
+  <text x="505" y="295" fill="#94a3b8" font-family="monospace" font-size="9">✓ Prisma PostgreSQL Sync</text>
+  <text x="505" y="315" fill="#e2e8f0" font-family="monospace" font-size="9">Status: 200 OK (14ms response)</text>
+</svg>

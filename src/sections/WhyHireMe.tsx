@@ -50,10 +50,10 @@ export default function WhyHireMe() {
                 </span>
               </div>
 
-              <h3 style={{ color: "#fff", fontWeight: 700, fontSize: 16, marginBottom: 10 }}>
+              <h3 style={{ color: "var(--text-main)", fontWeight: 700, fontSize: 16, marginBottom: 10 }}>
                 {item.title}
               </h3>
-              <p style={{ color: "#64748b", fontSize: 13, lineHeight: 1.65 }}>{item.desc}</p>
+              <p style={{ color: "var(--text-muted)", fontSize: 13, lineHeight: 1.65 }}>{item.desc}</p>
             </motion.div>
           );
         })}

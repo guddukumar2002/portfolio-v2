@@ -46,10 +46,10 @@ export default function Testimonials() {
               <div style={{ position: "absolute", top: "50%", right: -10, width: 20, height: 1, background: `linear-gradient(90deg, ${item.color}40, transparent)`, display: "none" }} />
             )}
 
-            <h3 style={{ color: "#fff", fontWeight: 700, fontSize: 17, marginBottom: 10 }}>
+            <h3 style={{ color: "var(--text-main)", fontWeight: 700, fontSize: 17, marginBottom: 10 }}>
               {item.title}
             </h3>
-            <p style={{ color: "#64748b", fontSize: 13, lineHeight: 1.7 }}>{item.desc}</p>
+            <p style={{ color: "var(--text-muted)", fontSize: 13, lineHeight: 1.7 }}>{item.desc}</p>
           </motion.div>
         ))}
       </motion.div>
@@ -59,12 +59,12 @@ export default function Testimonials() {
         initial={{ opacity: 0, y: 16 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.6 }}
-        style={{ marginTop: 40, textAlign: "center", padding: "28px", borderRadius: 20, border: "1px solid rgba(99,102,241,0.15)", background: "rgba(99,102,241,0.04)" }}
+        style={{ marginTop: 40, textAlign: "center", padding: "28px", borderRadius: 20, border: "1px solid var(--card-border)", background: "var(--card-bg)" }}
       >
-        <p style={{ color: "#64748b", fontSize: 14, marginBottom: 4 }}>
+        <p style={{ color: "var(--text-muted)", fontSize: 14, marginBottom: 4 }}>
           Ready to build something together?
         </p>
-        <p style={{ color: "#a5b4fc", fontSize: 15, fontWeight: 600 }}>
+        <p style={{ color: "#4f46e5", fontSize: 15, fontWeight: 600 }}>
           I&apos;m available for full-time roles & freelance projects — let&apos;s talk.
         </p>
       </motion.div>

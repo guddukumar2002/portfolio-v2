@@ -30,7 +30,7 @@ export default function SectionWrapper({ id, children, title, subtitle, align = 
               </div>
             )}
             {title && (
-              <h2 style={{ fontSize: "clamp(24px, 4vw, 42px)", fontWeight: 800, color: "#ffffff", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+              <h2 style={{ fontSize: "clamp(24px, 4vw, 42px)", fontWeight: 800, color: "var(--text-main)", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
                 {title.split(" ").map((word, i) => (
                   <motion.span
                     key={i}

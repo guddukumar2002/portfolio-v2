@@ -1,139 +1,184 @@
 "use client";
 import { motion } from "framer-motion";
+import { GraduationCap, MapPin, Briefcase, Mail, CheckCircle2, ArrowUpRight, Sparkles } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { scrollToSection } from "@/components/SmoothScroll";
 import { availability } from "@/data";
 import GitHubStats from "@/components/GitHubStats";
 
 const facts = [
-  { icon: "🎓", label: "Education", value: "B.Tech CSE, ABES" },
-  { icon: "📍", label: "Location", value: "Ghaziabad, India" },
-  { icon: "💼", label: "Experience", value: "2+ Yrs, 4 Companies" },
-  { icon: "🚀", label: "Currently", value: "Dev @ SEG" },
-  { icon: "📧", label: "Email", value: "gk13212@gmail.com" },
-  { icon: "🎯", label: "Open To", value: "Full-time / Freelance" },
+  { icon: <GraduationCap size={16} style={{ color: "#818cf8" }} />, label: "Education", value: "B.Tech CSE, ABES IT" },
+  { icon: <MapPin size={16} style={{ color: "#34d399" }} />, label: "Location", value: "Ghaziabad, India" },
+  { icon: <Briefcase size={16} style={{ color: "#60a5fa" }} />, label: "Experience", value: "2+ Yrs | 4 Companies" },
+  { icon: <Sparkles size={16} style={{ color: "#fbbf24" }} />, label: "Currently", value: "Web Developer @ SEG" },
+  { icon: <Mail size={16} style={{ color: "#c084fc" }} />, label: "Email", value: availability.email },
+  { icon: <CheckCircle2 size={16} style={{ color: "#34d399" }} />, label: "Open To", value: "Full-Time & Freelance" },
 ];
 
-export default function About() {
+interface AboutProps {
+  onOpenResume: () => void;
+}
+
+export default function About({ onOpenResume }: AboutProps) {
   const { ref, inView } = useScrollReveal();
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <section id="about" className="section-pad" style={{ position: "relative", zIndex: 1 }}>
       <div className="section-inner">
-
-        {/* Label */}
+        {/* Section Label Header */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 36 }}>
           <div style={{ width: 24, height: 1, background: "linear-gradient(90deg, transparent, #6366f1)" }} />
-          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#818cf8" }}>About Me</span>
+          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#818cf8" }}>
+            About Me
+          </span>
           <div style={{ width: 24, height: 1, background: "linear-gradient(90deg, #6366f1, transparent)" }} />
         </div>
 
-        {/* Grid */}
+        {/* Content Grid */}
         <div
           ref={ref}
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-            gap: isMobile ? 32 : 56,
-            alignItems: "start",
-          }}
+          className="about-grid"
         >
-          {/* LEFT */}
+          {/* LEFT: Concise Bio & Philosophy */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            style={{ width: "100%", minWidth: 0 }}
           >
-            <h2 style={{ fontSize: "clamp(24px, 5vw, 42px)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 18 }}>
-              Passionate about{" "}
-              <span style={{ background: "linear-gradient(135deg, #818cf8, #c084fc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                building great software
+            <h2 style={{ fontSize: "clamp(26px, 4vw, 42px)", fontWeight: 800, color: "var(--text-main)", letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 20 }}>
+              Engineering scalable platforms with{" "}
+              <span className="animated-gradient">
+                clean code & modern architecture
               </span>
             </h2>
 
-            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.8, marginBottom: 12 }}>
-              Full Stack Developer from Ghaziabad, India with a B.Tech in Computer Science. I turn complex problems into clean, scalable solutions.
-            </p>
-            <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.8, marginBottom: 24 }}>
-              Worked across <span style={{ color: "#e2e8f0", fontWeight: 600 }}>4 companies</span> — from educational platforms at SEG to backend APIs at Inlign Tech.
-            </p>
-
-            <div style={{ marginBottom: 24 }}>
-              <GitHubStats username={availability.github} />
+            {/* Currently Building Badge */}
+            <div style={{ padding: "12px 16px", borderRadius: 12, border: "1px solid rgba(99, 102, 241, 0.25)", background: "rgba(99, 102, 241, 0.06)", display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#6366f1", boxShadow: "0 0 10px #6366f1" }} />
+              <span style={{ color: "#a5b4fc", fontSize: 13, fontWeight: 600 }}>
+                Currently building → <strong style={{ color: "#fff" }}>scalable web applications + AI-powered experiences</strong>
+              </span>
             </div>
 
+            <p style={{ color: "var(--text-muted)", fontSize: 15, lineHeight: 1.8, marginBottom: 16 }}>
+              Full Stack Developer based in Ghaziabad, India with a B.Tech in Computer Science & Engineering. I specialize in building complete end-to-end web applications — from pixel-perfect React/Next.js interfaces to robust Node.js/Express APIs and database architectures.
+            </p>
+
+            <p style={{ color: "var(--text-muted)", fontSize: 15, lineHeight: 1.8, marginBottom: 24 }}>
+              With experience across <strong style={{ color: "var(--text-main)" }}>4 companies</strong> (SEG, Pearl Thoughts, Inlign Tech, Code Alpha), I take pride in delivering production apps that handle real clinical data, user registrations, and live payments.
+            </p>
+
+            {/* GitHub Stats Component */}
+            <div style={{ marginBottom: 28 }}>
+              <GitHubStats username={availability.githubUsername} />
+            </div>
+
+            {/* CTAs */}
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <motion.a
-                href="#contact"
-                onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
-                whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
-                style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 24px", borderRadius: 12, background: "linear-gradient(135deg, #6366f1, #8b5cf6)", color: "#fff", fontWeight: 700, fontSize: 14, textDecoration: "none", boxShadow: "0 0 24px rgba(99,102,241,0.35)" }}
+              <button
+                onClick={onOpenResume}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "12px 24px",
+                  borderRadius: 12,
+                  background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontSize: 14,
+                  border: "none",
+                  cursor: "pointer",
+                  boxShadow: "0 0 24px rgba(99,102,241,0.35)",
+                }}
               >
-                Hire Me
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-              </motion.a>
-              <motion.a
-                href="/assets/GudduKumarResume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
-                style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 24px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.04)", color: "#cbd5e1", fontWeight: 700, fontSize: 14, textDecoration: "none" }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                View Resume
-              </motion.a>
+                View Full Resume
+                <ArrowUpRight size={16} />
+              </button>
             </div>
           </motion.div>
 
-          {/* RIGHT — facts */}
+          {/* RIGHT: Quick Facts & Core Stack Grid */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
-            style={{ display: "flex", flexDirection: "column", gap: 12, width: "100%", minWidth: 0 }}
+            style={{ display: "flex", flexDirection: "column", gap: 16 }}
           >
-            {/* Facts grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+            {/* Facts Grid */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
               {facts.map((fact, i) => (
                 <motion.div
                   key={i}
                   whileHover={{ y: -3, borderColor: "rgba(99,102,241,0.35)" }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   style={{
-                    padding: "14px 12px", borderRadius: 14,
-                    border: "1px solid rgba(255,255,255,0.07)",
-                    background: "rgba(255,255,255,0.02)",
+                    padding: "16px 14px",
+                    borderRadius: 14,
+                    border: "1px solid var(--card-border)",
+                    background: "var(--card-bg)",
                     backdropFilter: "blur(8px)",
-                    minWidth: 0,
                   }}
                 >
-                  <div style={{ fontSize: 18, marginBottom: 6 }}>{fact.icon}</div>
-                  <div style={{ color: "#475569", fontSize: 10, fontWeight: 700, marginBottom: 3, textTransform: "uppercase", letterSpacing: "0.08em" }}>{fact.label}</div>
-                  <div style={{ color: "#e2e8f0", fontSize: 12, fontWeight: 600, lineHeight: 1.4, wordBreak: "break-word" }}>{fact.value}</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                    {fact.icon}
+                    <span style={{ color: "var(--text-muted)", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                      {fact.label}
+                    </span>
+                  </div>
+                  <div style={{ color: "var(--text-main)", fontSize: 13, fontWeight: 600, lineHeight: 1.4, wordBreak: "break-word" }}>
+                    {fact.value}
+                  </div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Availability */}
-            <div style={{ padding: "14px 16px", borderRadius: 14, border: "1px solid rgba(52,211,153,0.2)", background: "rgba(52,211,153,0.04)", display: "flex", alignItems: "center", gap: 12 }}>
+            {/* Availability Banner */}
+            <div
+              style={{
+                padding: "16px",
+                borderRadius: 14,
+                border: "1px solid rgba(52,211,153,0.3)",
+                background: "rgba(52,211,153,0.05)",
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+              }}
+            >
               <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#34d399", boxShadow: "0 0 10px #34d399", flexShrink: 0 }} />
               <div>
-                <div style={{ color: "#6ee7b7", fontSize: 12, fontWeight: 700 }}>Available Immediately</div>
-                <div style={{ color: "#475569", fontSize: 11, marginTop: 2 }}>Open to full-time & freelance</div>
+                <div style={{ color: "#6ee7b7", fontSize: 13, fontWeight: 700 }}>Available Immediately</div>
+                <div style={{ color: "var(--text-muted)", fontSize: 12, marginTop: 2 }}>Open to Full-Time roles & high-impact Freelance projects</div>
               </div>
             </div>
 
-            {/* Tech stack quick view */}
-            <div style={{ padding: "16px", borderRadius: 14, border: "1px solid rgba(99,102,241,0.15)", background: "rgba(99,102,241,0.04)" }}>
-              <div style={{ color: "#475569", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 12 }}>Core Stack</div>
+            {/* Core Stack Quick View */}
+            <div
+              style={{
+                padding: "20px",
+                borderRadius: 14,
+                border: "1px solid rgba(99,102,241,0.2)",
+                background: "rgba(99,102,241,0.04)",
+              }}
+            >
+              <div style={{ color: "var(--text-muted)", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 12 }}>
+                Primary Technology Stack
+              </div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                {["React", "Next.js", "Node.js", "TypeScript", "MongoDB", "Tailwind"].map(t => (
-                  <span key={t} style={{ fontSize: 11, fontWeight: 600, padding: "4px 10px", borderRadius: 6, background: "rgba(99,102,241,0.12)", border: "1px solid rgba(99,102,241,0.2)", color: "#a5b4fc" }}>{t}</span>
+                {["React.js", "Next.js 16", "Node.js", "TypeScript", "Prisma", "PostgreSQL", "MongoDB", "Tailwind CSS", "AI APIs"].map((t) => (
+                  <span
+                    key={t}
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 600,
+                      padding: "4px 10px",
+                      borderRadius: 6,
+                      background: "rgba(99,102,241,0.12)",
+                      border: "1px solid rgba(99,102,241,0.25)",
+                      color: "#a5b4fc",
+                    }}
+                  >
+                    {t}
+                  </span>
                 ))}
               </div>
             </div>

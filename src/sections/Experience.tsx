@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { Briefcase, MapPin, Calendar, CheckCircle2 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { experiences } from "@/data";
 import SectionWrapper from "@/components/SectionWrapper";
@@ -8,7 +9,7 @@ export default function Experience() {
   const { ref, inView } = useScrollReveal();
 
   return (
-    <SectionWrapper id="experience" title="Work Experience" subtitle="Career" align="left">
+    <SectionWrapper id="experience" title="Work Experience" subtitle="Career Journey" align="left">
       <motion.div
         ref={ref}
         initial="hidden"
@@ -16,72 +17,110 @@ export default function Experience() {
         variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
         style={{ position: "relative", maxWidth: "100%" }}
       >
-        {/* Vertical line */}
-        <div style={{ position: "absolute", left: 15, top: 8, bottom: 8, width: 1, background: "linear-gradient(to bottom, rgba(99,102,241,0.8), rgba(99,102,241,0.2), transparent)" }} />
+        {/* Timeline Line */}
+        <div
+          style={{
+            position: "absolute",
+            left: 17,
+            top: 10,
+            bottom: 10,
+            width: 2,
+            background: "linear-gradient(to bottom, rgba(99,102,241,0.9), rgba(52,211,153,0.5), transparent)",
+          }}
+        />
 
         {experiences.map((exp, i) => (
           <motion.div
             key={i}
             variants={{ hidden: { opacity: 0, x: -24 }, visible: { opacity: 1, x: 0, transition: { duration: 0.55 } } }}
-            style={{ position: "relative", paddingLeft: 48, paddingBottom: 32 }}
+            style={{ position: "relative", paddingLeft: 52, paddingBottom: 36 }}
           >
-            {/* Dot */}
-            <div style={{
-              position: "absolute", left: 0, top: 20,
-              width: 28, height: 28, borderRadius: "50%",
-              border: `2px solid ${exp.current ? "#34d399" : "#6366f1"}`,
-              background: exp.current ? "rgba(52,211,153,0.1)" : "rgba(99,102,241,0.1)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              boxShadow: exp.current ? "0 0 16px rgba(52,211,153,0.4)" : "0 0 12px rgba(99,102,241,0.3)",
-            }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: exp.current ? "#34d399" : "#6366f1" }} />
+            {/* Timeline Dot Node */}
+            <div
+              style={{
+                position: "absolute",
+                left: 3,
+                top: 16,
+                width: 30,
+                height: 30,
+                borderRadius: "50%",
+                border: `2px solid ${exp.current ? "#34d399" : "#6366f1"}`,
+                background: exp.current ? "rgba(52,211,153,0.15)" : "#080814",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: exp.current ? "0 0 18px rgba(52,211,153,0.5)" : "0 0 14px rgba(99,102,241,0.3)",
+                zIndex: 2,
+              }}
+            >
+              <Briefcase size={14} style={{ color: exp.current ? "#34d399" : "#818cf8" }} />
             </div>
 
-            {/* Card */}
+            {/* Experience Card */}
             <motion.div
-              whileHover={{ borderColor: exp.current ? "rgba(52,211,153,0.35)" : "rgba(99,102,241,0.3)", y: -2 }}
+              whileHover={{ borderColor: exp.current ? "rgba(52,211,153,0.4)" : "rgba(99,102,241,0.35)", y: -3 }}
               transition={{ duration: 0.2 }}
               style={{
                 padding: "24px 28px",
                 borderRadius: 20,
-                border: exp.current ? "1px solid rgba(45,212,191,0.25)" : "1px solid rgba(255,255,255,0.07)",
-                background: exp.current ? "rgba(45,212,191,0.04)" : "rgba(255,255,255,0.02)",
-                backdropFilter: "blur(8px)",
-                transition: "all 0.3s",
+                border: exp.current ? "1px solid rgba(52,211,153,0.3)" : "1px solid var(--card-border)",
+                background: exp.current ? "rgba(52,211,153,0.03)" : "var(--card-bg)",
+                backdropFilter: "blur(12px)",
+                boxShadow: exp.current ? "0 8px 32px rgba(52,211,153,0.08)" : "none",
               }}
             >
-              {/* Top row */}
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", justifyContent: "space-between", gap: "6px 12px", marginBottom: 6 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                  <h3 style={{ color: "#fff", fontWeight: 700, fontSize: "clamp(14px, 2.5vw, 18px)", lineHeight: 1.2 }}>
-                    {exp.role}
-                  </h3>
-                  {exp.current && (
-                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", padding: "3px 8px", borderRadius: 6, background: "rgba(52,211,153,0.15)", color: "#6ee7b7", border: "1px solid rgba(52,211,153,0.25)", whiteSpace: "nowrap" }}>
-                      Current
+              {/* Header Info */}
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", justifyContent: "space-between", gap: 10, marginBottom: 8 }}>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                    <h3 style={{ color: "var(--text-main)", fontWeight: 800, fontSize: "clamp(16px, 2.5vw, 19px)", lineHeight: 1.2 }}>
+                      {exp.role}
+                    </h3>
+                    {exp.current && (
+                      <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", padding: "3px 9px", borderRadius: 6, background: "rgba(16,185,129,0.12)", color: "#059669", border: "1px solid rgba(16,185,129,0.3)" }}>
+                        Current Role
+                      </span>
+                    )}
+                    <span style={{ fontSize: 11, fontWeight: 600, padding: "3px 8px", borderRadius: 6, background: "var(--card-bg)", color: "var(--text-muted)", border: "1px solid var(--card-border)" }}>
+                      {exp.type}
                     </span>
-                  )}
-                  <span style={{ fontSize: 10, fontWeight: 600, padding: "3px 8px", borderRadius: 6, background: "rgba(255,255,255,0.05)", color: "#64748b", border: "1px solid rgba(255,255,255,0.07)", whiteSpace: "nowrap" }}>
-                    {exp.type}
-                  </span>
+                  </div>
+                  <div style={{ color: "#4f46e5", fontSize: 14, fontWeight: 700, marginTop: 4 }}>
+                    @ {exp.company}
+                  </div>
                 </div>
-                <span style={{ color: "#475569", fontSize: 11, fontFamily: "monospace", whiteSpace: "nowrap" }}>
-                  {exp.duration}
-                </span>
+
+                {/* Duration & Location */}
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-muted)", fontSize: 12, fontFamily: "monospace" }}>
+                    <Calendar size={13} />
+                    {exp.duration}
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 4, color: "var(--text-muted)", fontSize: 11 }}>
+                    <MapPin size={11} />
+                    {exp.location}
+                  </div>
+                </div>
               </div>
 
-              <p style={{ color: "#818cf8", fontSize: 13, fontWeight: 700, marginBottom: 14, letterSpacing: "0.01em" }}>
-                @ {exp.company}
-              </p>
-
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+              {/* Responsibilities Bullets */}
+              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8, marginTop: 16, marginBottom: 16 }}>
                 {exp.points.map((pt, j) => (
-                  <li key={j} style={{ display: "flex", gap: 10, color: "#94a3b8", fontSize: "clamp(13px, 1.5vw, 14px)", lineHeight: 1.65 }}>
-                    <span style={{ marginTop: 8, width: 4, height: 4, borderRadius: "50%", background: "#6366f1", flexShrink: 0, opacity: 0.7 }} />
-                    {pt}
+                  <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: 10, color: "var(--text-muted)", fontSize: 14, lineHeight: 1.65 }}>
+                    <CheckCircle2 size={15} style={{ color: "#6366f1", marginTop: 4, flexShrink: 0 }} />
+                    <span>{pt}</span>
                   </li>
                 ))}
               </ul>
+
+              {/* Tech Badges */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                {exp.tech.map((t) => (
+                  <span key={t} style={{ fontSize: 10, fontWeight: 600, padding: "3px 8px", borderRadius: 5, background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.18)", color: "#a5b4fc" }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           </motion.div>
         ))}

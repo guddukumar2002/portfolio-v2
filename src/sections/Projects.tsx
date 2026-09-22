@@ -1,144 +1,283 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { ExternalLink, ArrowRight, Award, CheckCircle2 } from "lucide-react";
+import { SiGithub } from "react-icons/si";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { projects } from "@/data";
+import { projects, Project } from "@/data";
 import SectionWrapper from "@/components/SectionWrapper";
 
-const accentColors = [
-  { border: "rgba(99,102,241,0.35)", glow: "rgba(99,102,241,0.12)", top: "#6366f1", badge: "rgba(99,102,241,0.15)" },
-  { border: "rgba(16,185,129,0.35)", glow: "rgba(16,185,129,0.1)", top: "#10b981", badge: "rgba(16,185,129,0.12)" },
-  { border: "rgba(245,158,11,0.35)", glow: "rgba(245,158,11,0.1)", top: "#f59e0b", badge: "rgba(245,158,11,0.12)" },
-  { border: "rgba(192,132,252,0.35)", glow: "rgba(192,132,252,0.1)", top: "#c084fc", badge: "rgba(192,132,252,0.12)" },
-];
-
-function ProjectCard({ project, i, large = false }: { project: typeof projects[0]; i: number; large?: boolean }) {
-  const c = accentColors[i % accentColors.length];
-  return (
-    <motion.article
-      variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
-      whileHover={{ y: -6, boxShadow: `0 24px 60px ${c.glow}` }}
-      transition={{ type: "spring", stiffness: 280, damping: 22 }}
-      style={{
-        display: "flex", flexDirection: "column",
-        borderRadius: 20,
-        border: `1px solid ${c.border}`,
-        background: "rgba(8,8,20,0.6)",
-        backdropFilter: "blur(12px)",
-        overflow: "hidden",
-        position: "relative",
-        boxShadow: `0 0 0 1px ${c.border}, 0 8px 32px ${c.glow}`,
-      }}
-    >
-      {/* Top accent line */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${c.top}, transparent)`, zIndex: 3 }} />
-
-      {/* Screenshot */}
-      <div style={{ position: "relative", height: large ? 240 : 180, overflow: "hidden", background: "#050510", flexShrink: 0 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={project.screenshot}
-          alt={project.title}
-          loading="lazy"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", display: "block", transition: "transform 0.4s ease" }}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.04)")}
-          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-        />
-        {/* Gradient overlay */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(8,8,20,0.7) 100%)" }} />
-
-        {/* Top-right: Live button */}
-        <a
-          href={project.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          style={{ position: "absolute", top: 12, right: 12, display: "flex", alignItems: "center", gap: 5, padding: "5px 12px", borderRadius: 8, background: "rgba(8,8,20,0.85)", border: `1px solid ${c.border}`, color: "#fff", fontSize: 11, fontWeight: 700, textDecoration: "none", backdropFilter: "blur(8px)", zIndex: 2 }}
-        >
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: c.top, boxShadow: `0 0 6px ${c.top}` }} />
-          Live
-        </a>
-      </div>
-
-      {/* Content */}
-      <div style={{ padding: "18px 20px 20px", display: "flex", flexDirection: "column", flex: 1 }}>
-        {/* Title + GitHub */}
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8, marginBottom: 8 }}>
-          <h3 style={{ color: "#f1f5f9", fontWeight: 700, fontSize: large ? 17 : 15, lineHeight: 1.3, flex: 1 }}>
-            {project.title}
-          </h3>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "#475569", flexShrink: 0, display: "flex", alignItems: "center", transition: "color 0.2s" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#a5b4fc")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#475569")}
-            title="View Source"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
-            </svg>
-          </a>
-        </div>
-
-        <p style={{ color: "#64748b", fontSize: 12, lineHeight: 1.65, marginBottom: 12, flex: 1 }}>
-          {project.description}
-        </p>
-
-        {/* Metrics */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 10 }}>
-          {project.metrics.map((m) => (
-            <span key={m} style={{ fontSize: 10, fontWeight: 700, padding: "3px 8px", borderRadius: 6, background: c.badge, border: `1px solid ${c.border}`, color: "#e2e8f0", letterSpacing: "0.02em" }}>
-              ✦ {m}
-            </span>
-          ))}
-        </div>
-
-        {/* Tech */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
-          {project.tech.map((t) => (
-            <span key={t} style={{ fontSize: 10, fontWeight: 600, padding: "2px 8px", borderRadius: 5, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", color: "#475569" }}>
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-    </motion.article>
-  );
+interface ProjectsProps {
+  onSelectProject: (p: Project) => void;
 }
 
-export default function Projects() {
+export default function Projects({ onSelectProject }: ProjectsProps) {
   const { ref, inView } = useScrollReveal();
-  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  // Featured project (MedGallery is project #0)
+  const featured = projects[0];
+  const remaining = projects.slice(1);
 
   return (
-    <SectionWrapper id="projects" title="Projects" subtitle="Work">
+    <SectionWrapper id="projects" title="Featured Projects" subtitle="Production Work">
+      {/* FEATURED SPOTLIGHT BLOCK */}
+      {featured && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          style={{
+            marginBottom: 48,
+            borderRadius: 24,
+            border: "1px solid rgba(99, 102, 241, 0.4)",
+            background: "linear-gradient(135deg, rgba(8,8,20,0.9) 0%, rgba(15,15,35,0.7) 100%)",
+            backdropFilter: "blur(16px)",
+            overflow: "hidden",
+            boxShadow: "0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(99,102,241,0.15)",
+            position: "relative",
+          }}
+        >
+          {/* Top highlight bar */}
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "linear-gradient(90deg, #6366f1, #8b5cf6, #34d399)" }} />
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 32, padding: "32px" }}>
+            {/* LEFT: Project Image Preview */}
+            <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)", height: "100%", minHeight: 260, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              {/* Fallback graphic if image not available */}
+              <div style={{ position: "absolute", inset: 0, padding: 24, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+                <div style={{ width: 56, height: 56, borderRadius: 16, background: "rgba(99,102,241,0.15)", border: "1px solid rgba(99,102,241,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, marginBottom: 12, color: "#a5b4fc" }}>
+                  💻
+                </div>
+                <span style={{ fontSize: 15, fontWeight: 800, color: "#e2e8f0" }}>{featured.title}</span>
+                <span style={{ fontSize: 12, color: "#818cf8", marginTop: 4, fontWeight: 600 }}>{featured.tech.slice(0, 4).join(" • ")}</span>
+              </div>
+
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={featured.screenshot}
+                alt={featured.title}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.display = "none";
+                }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", transition: "transform 0.5s ease", position: "relative", zIndex: 2 }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(8,8,20,0.85) 100%)", zIndex: 3, pointerEvents: "none" }} />
+
+              <div style={{ position: "absolute", top: 14, left: 14, padding: "4px 10px", borderRadius: 8, background: "rgba(99, 102, 241, 0.9)", color: "#fff", fontSize: 11, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", zIndex: 4 }}>
+                ⭐ Featured Spotlight
+              </div>
+            </div>
+
+            {/* RIGHT: Detailed Info */}
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
+                  {featured.metrics.map((m) => (
+                    <span key={m} style={{ fontSize: 11, fontWeight: 700, padding: "3px 9px", borderRadius: 6, background: "rgba(52,211,153,0.12)", border: "1px solid rgba(52,211,153,0.25)", color: "#6ee7b7" }}>
+                      ✦ {m}
+                    </span>
+                  ))}
+                </div>
+
+                <h3 style={{ color: "var(--text-main)", fontWeight: 800, fontSize: "clamp(20px, 3vw, 26px)", marginBottom: 8, lineHeight: 1.2 }}>
+                  {featured.title}
+                </h3>
+                <p style={{ color: "#818cf8", fontSize: 13, fontWeight: 600, marginBottom: 14 }}>
+                  {featured.subtitle}
+                </p>
+                <p style={{ color: "var(--text-muted)", fontSize: 14, lineHeight: 1.7, marginBottom: 20 }}>
+                  {featured.description}
+                </p>
+
+                {/* Key features bullet points */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 20 }}>
+                  {featured.keyFeatures.slice(0, 3).map((f) => (
+                    <div key={f} style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--text-main)", fontSize: 13 }}>
+                      <CheckCircle2 size={14} style={{ color: "#10b981", flexShrink: 0 }} />
+                      {f}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Tech Badges */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 24 }}>
+                  {featured.tech.map((t) => (
+                    <span key={t} style={{ fontSize: 11, fontWeight: 600, padding: "3px 9px", borderRadius: 6, background: "rgba(99, 102, 241, 0.08)", border: "1px solid rgba(99, 102, 241, 0.2)", color: "var(--text-main)" }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Links */}
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
+                <button
+                  onClick={() => onSelectProject(featured)}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: "11px 20px",
+                    borderRadius: 10,
+                    background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+                    color: "#fff",
+                    fontSize: 13,
+                    fontWeight: 700,
+                    border: "none",
+                    cursor: "pointer",
+                    boxShadow: "0 0 20px rgba(99,102,241,0.4)",
+                  }}
+                >
+                  View Case Study
+                  <ArrowRight size={15} />
+                </button>
+
+                <a
+                  href={featured.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "10px 18px", borderRadius: 10, border: "1px solid var(--card-border)", background: "var(--card-bg)", color: "var(--text-main)", fontSize: 13, fontWeight: 600, textDecoration: "none" }}
+                >
+                  <ExternalLink size={14} />
+                  Live Demo
+                </a>
+
+                <a
+                  href={featured.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Source Code"
+                  style={{ width: 38, height: 38, borderRadius: 10, border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.03)", display: "flex", alignItems: "center", justifyContent: "center", color: "#94a3b8", textDecoration: "none" }}
+                >
+                  <SiGithub size={18} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      {/* OTHER PROJECTS GRID */}
       <motion.div
         ref={ref}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+        variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+        style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 28 }}
       >
-        {isMobile ? (
-          /* Mobile — single column */
-          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-            {projects.map((p, i) => <ProjectCard key={p.title} project={p} i={i} large />)}
-          </div>
-        ) : (
-          <div style={{ display: "flex", flexDirection: "column", gap: 36 }}>
-            {/* Row 1 */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
-              <ProjectCard project={projects[0]} i={0} large />
-              <ProjectCard project={projects[1]} i={1} large />
+        {remaining.map((project) => (
+          <motion.article
+            key={project.id}
+            variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+            whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(99, 102, 241, 0.15)" }}
+            transition={{ type: "spring", stiffness: 300, damping: 22 }}
+            style={{
+              borderRadius: 20,
+              border: "1px solid var(--card-border)",
+              background: "var(--card-bg)",
+              backdropFilter: "blur(12px)",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            {/* Image header */}
+            <div style={{ position: "relative", height: 190, overflow: "hidden", background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              {/* Fallback pattern */}
+              <div style={{ position: "absolute", inset: 0, padding: 16, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+                <span style={{ fontSize: 13, fontWeight: 800, color: "#a5b4fc", letterSpacing: "0.03em" }}>{project.title}</span>
+                <span style={{ fontSize: 11, color: "#64748b", marginTop: 4 }}>{project.tech.slice(0, 3).join(" • ")}</span>
+              </div>
+
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.screenshot}
+                alt={project.title}
+                loading="lazy"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.display = "none";
+                }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", transition: "transform 0.4s ease", position: "relative", zIndex: 2 }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(8,8,20,0.85) 100%)", zIndex: 3, pointerEvents: "none" }} />
+
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ position: "absolute", top: 12, right: 12, display: "flex", alignItems: "center", gap: 5, padding: "5px 12px", borderRadius: 8, background: "rgba(8,8,20,0.85)", border: "1px solid rgba(255,255,255,0.15)", color: "#fff", fontSize: 11, fontWeight: 700, textDecoration: "none", backdropFilter: "blur(8px)", zIndex: 4 }}
+              >
+                <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#34d399", boxShadow: "0 0 6px #34d399" }} />
+                Live Demo
+              </a>
             </div>
-            {/* Row 2 */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
-              <ProjectCard project={projects[2]} i={2} />
-              <ProjectCard project={projects[3]} i={3} />
+
+            {/* Card Content */}
+            <div style={{ padding: "20px", display: "flex", flexDirection: "column", flex: 1, justifyContent: "space-between" }}>
+              <div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10, marginBottom: 8 }}>
+                  <h3 style={{ color: "var(--text-main)", fontWeight: 700, fontSize: 17, lineHeight: 1.3 }}>
+                    {project.title}
+                  </h3>
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" title="View Source" style={{ color: "#64748b" }}>
+                    <SiGithub size={17} />
+                  </a>
+                </div>
+
+                <p style={{ color: "var(--text-muted)", fontSize: 13, lineHeight: 1.6, marginBottom: 14 }}>
+                  {project.description}
+                </p>
+
+                {/* Metrics */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 12 }}>
+                  {project.metrics.map((m) => (
+                    <span key={m} style={{ fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: 5, background: "rgba(99,102,241,0.12)", color: "#a5b4fc" }}>
+                      ✦ {m}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Tech tags */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 16 }}>
+                  {project.tech.map((t) => (
+                    <span key={t} style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 5, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", color: "var(--text-muted)" }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Case Study Button */}
+              <button
+                onClick={() => onSelectProject(project)}
+                style={{
+                  width: "100%",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 6,
+                  padding: "10px",
+                  borderRadius: 10,
+                  border: "1px solid rgba(99,102,241,0.25)",
+                  background: "rgba(99,102,241,0.08)",
+                  color: "#a5b4fc",
+                  fontSize: 12,
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  transition: "all 0.2s",
+                }}
+              >
+                View Case Study Details
+                <ArrowRight size={14} />
+              </button>
             </div>
-          </div>
-        )}
+          </motion.article>
+        ))}
       </motion.div>
     </SectionWrapper>
   );
